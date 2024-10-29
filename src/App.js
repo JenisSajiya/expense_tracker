@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import AddTransaction from './components/AddTransaction';
+import FilterTransaction from './components/FilterTransaction';
+import PredictFuture from './components/PredictFuture';
+import './App.css'; // Import App.css for global styles
+
+function Home() {
+  const navigate = useNavigate();
+
+  return (
+    <div>
+      <h1>Welcome!</h1>
+      <button onClick={() => navigate('/signup')}>Signup</button>
+      <button onClick={() => navigate('/login')}>Login</button>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/add-transaction" element={<AddTransaction />} />
+        <Route path="/filter-transaction" element={<FilterTransaction />} />
+        <Route path="/predict-future" element={<PredictFuture />} />
+      </Routes>
+    </Router>
   );
 }
 
